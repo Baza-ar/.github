@@ -28,14 +28,14 @@ All client traffic flows through a centralized **API Gateway** (Kong), which han
 
 ```mermaid
 graph TD
-    Mobile([📱 Mobile App<br>React Native / Expo]) -->|HTTPS| Gateway[🔀 API Gateway<br>Kong 3.6]
+    Mobile([Mobile App<br>React Native / Expo]) -->|HTTPS| Gateway[API Gateway<br>Kong 3.6]
     Backoffice([🖥️ Admin Backoffice<br>Next.js]) -->|HTTPS| Gateway
 
     subgraph Backend Microservices
-        Gateway -->|X-User-Id / X-User-Role| UserAPI[👤 User API<br>Java · Spring Boot]
-        Gateway -->|X-User-Id / X-User-Role| CatalogAPI[📦 Catalog API<br>Python · FastAPI]
-        Gateway -->|X-User-Id / X-User-Role| CartAPI[🛒 Cart API<br>Kotlin · Spring Boot]
-        Gateway -->|X-User-Id / X-User-Role| OrdersAPI[📋 Orders API<br>Java · Spring Boot]
+        Gateway -->|X-User-Id / X-User-Role| UserAPI[User API<br>Java · Spring Boot]
+        Gateway -->|X-User-Id / X-User-Role| CatalogAPI[Catalog API<br>Python · FastAPI]
+        Gateway -->|X-User-Id / X-User-Role| CartAPI[Cart API<br>Kotlin · Spring Boot]
+        Gateway -->|X-User-Id / X-User-Role| OrdersAPI[Orders API<br>Java · Spring Boot]
     end
 
     subgraph Data Stores
@@ -46,20 +46,20 @@ graph TD
     end
 
     subgraph External Services
-        UserAPI --> Cloudinary[☁️ Cloudinary CDN]
-        UserAPI --> Google[🔐 Google OAuth2]
-        UserAPI --> Email[📧 SendGrid / SMTP]
-        OrdersAPI --> MercadoPago[💳 Mercado Pago]
+        UserAPI --> Cloudinary[Cloudinary CDN]
+        UserAPI --> Google[Google OAuth2]
+        UserAPI --> Email[SendGrid / SMTP]
+        OrdersAPI --> MercadoPago[Mercado Pago]
     end
 
     subgraph Messaging
-        OrdersAPI --> RabbitMQ[🐇 RabbitMQ]
+        OrdersAPI --> RabbitMQ[RabbitMQ]
         CartAPI --> RabbitMQ
         CatalogAPI --> RabbitMQ
     end
 
     subgraph Observability
-        Gateway --> OTEL[📊 OpenTelemetry Collector]
+        Gateway --> OTEL[OpenTelemetry Collector]
         UserAPI --> OTEL
         OrdersAPI --> OTEL
     end
@@ -74,7 +74,7 @@ graph TD
 
 The organization is structured into **8 repositories**, each with a clear boundary of responsibility:
 
-### 🔀 API Gateway — [`api-gateway`](https://github.com/Baza-ar/api-gateway)
+### API Gateway — [`api-gateway`](https://github.com/Baza-ar/api-gateway)
 
 Reverse proxy and API Gateway built on **Kong 3.6** (db-less/declarative mode). Single entry point for all client requests.
 
@@ -89,7 +89,7 @@ Reverse proxy and API Gateway built on **Kong 3.6** (db-less/declarative mode). 
 
 ---
 
-### 👤 User API — [`api-user`](https://github.com/Baza-ar/api-user)
+### User API — [`api-user`](https://github.com/Baza-ar/api-user)
 
 Identity, authentication, and user profile management microservice.
 
@@ -104,7 +104,7 @@ Identity, authentication, and user profile management microservice.
 
 ---
 
-### 📦 Catalog API — [`api-catalog`](https://github.com/Baza-ar/Catalog)
+### Catalog API — [`api-catalog`](https://github.com/Baza-ar/Catalog)
 
 Product catalog management — listing, searching, filtering, and media upload.
 
@@ -118,7 +118,7 @@ Product catalog management — listing, searching, filtering, and media upload.
 
 ---
 
-### 🛒 Cart API — [`api-cart`](https://github.com/Baza-ar/api-cart)
+### Cart API — [`api-cart`](https://github.com/Baza-ar/api-cart)
 
 Shopping cart lifecycle management — item additions, quantity updates, and cart persistence.
 
@@ -131,7 +131,7 @@ Shopping cart lifecycle management — item additions, quantity updates, and car
 
 ---
 
-### 📋 Orders API — [`api-orders`](https://github.com/Baza-ar/api-orders)
+### Orders API — [`api-orders`](https://github.com/Baza-ar/api-orders)
 
 Checkout orchestration, payment processing, order lifecycle tracking, and review system.
 
@@ -146,7 +146,7 @@ Checkout orchestration, payment processing, order lifecycle tracking, and review
 
 ---
 
-### 🖥️ Admin Backoffice — [`admin-backoffice`](https://github.com/Baza-ar/admin-backoffice)
+### Admin Backoffice — [`admin-backoffice`](https://github.com/Baza-ar/admin-backoffice)
 
 Web-based administration panel for platform operators.
 
@@ -160,7 +160,7 @@ Web-based administration panel for platform operators.
 
 ---
 
-### 📱 Mobile App — [`app-mobile`](https://github.com/Baza-ar/app-mobile)
+### Mobile App — [`app-mobile`](https://github.com/Baza-ar/app-mobile)
 
 Cross-platform mobile marketplace application for buyers and sellers.
 
@@ -175,7 +175,7 @@ Cross-platform mobile marketplace application for buyers and sellers.
 
 ---
 
-### 📚 Technical Docs — [`technical-docs`](https://github.com/Baza-ar/technical-docs)
+### Technical Docs — [`technical-docs`](https://github.com/Baza-ar/technical-docs)
 
 Centralized cross-cutting documentation hub.
 
@@ -359,9 +359,3 @@ Available scripts: `login-stress.js`, `register-stress.js`, `create-product-stre
 ## License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) files in each repository for details.
-
----
-
-<p align="center">
-  <strong>Bazaar</strong> — Built with ❤️ by the <a href="https://github.com/Baza-ar">Baza-ar</a> Team &copy; 2026
-</p>
